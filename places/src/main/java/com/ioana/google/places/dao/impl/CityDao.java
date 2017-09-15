@@ -3,7 +3,6 @@ package com.ioana.google.places.dao.impl;
 import java.util.List;
 
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
