@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+	<!-- GUICE CONTEXT LISTENER -->
+	<listener>
+		<listener-class>com.ioana.google.places.guice.AppGuiceServletContextListener</listener-class>
+	</listener>
+
+	<!-- GUICE FILTER -->
+	<filter>
+		<filter-name>guiceFilter</filter-name>
+		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>guiceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Servlets -->
+
+	<servlet>
+		<servlet-name>googlePlaces</servlet-name>
+		<servlet-class>com.ioana.google.places.server.GooglePlacesServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>googlePlaces</servlet-name>
+		<url-pattern>/GooglePlaces/googlePlaces</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>GooglePlaces.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>
