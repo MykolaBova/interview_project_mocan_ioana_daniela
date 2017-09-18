@@ -1,59 +1,44 @@
 package com.ioana.google.places.dao.impl;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.ioana.google.places.dao.api.GenericDao;
 
 public class GenericDaoImpl<T> implements GenericDao<T> {
 
-	protected EntityManager entityManager;
+	@Inject
+	protected Provider<EntityManager> emProvider;
 
 	protected Class<T> entityClass;
 
 	@SuppressWarnings("unchecked")
 	public GenericDaoImpl(Class<T> entityClass) {
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("default");
-		entityManager = emf.createEntityManager();
 		this.entityClass = entityClass;
 	}
 
 	@Override
 	public T create(T t) {
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-		entityManager.persist(t);
-		tx.commit();
-		entityManager.close();
+		emProvider.get().persist(t);
 		return t;
 	}
 
 	@Override
 	public T read(Integer id) {
-		return this.entityManager.find(entityClass, id);
+		return this.emProvider.get().find(entityClass, id);
 	}
 
 	@Override
 	public T update(T t) {
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-		this.entityManager.merge(t);
-		tx.commit();
-		entityManager.close();
+		this.emProvider.get().merge(t);
 		return t;
 	}
 
 	@Override
 	public void delete(T t) {
-		EntityTransaction tx = entityManager.getTransaction();
-		tx.begin();
-		t = this.entityManager.merge(t);
-		this.entityManager.remove(t);
-		tx.commit();
-		entityManager.close();
+		t = this.emProvider.get().merge(t);
+		this.emProvider.get().remove(t);
 	}
 
 }

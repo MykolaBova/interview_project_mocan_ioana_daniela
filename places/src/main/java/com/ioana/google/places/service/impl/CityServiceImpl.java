@@ -2,6 +2,7 @@ package com.ioana.google.places.service.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.persist.Transactional;
 import com.ioana.google.places.dao.entities.City;
 import com.ioana.google.places.dao.impl.CityDao;
 import com.ioana.google.places.dto.CityDTO;
@@ -16,6 +17,7 @@ public class CityServiceImpl implements CityService {
 	private CityDao cityDao;
 
 	@Override
+	@Transactional
 	public CityDTO processCity(String cityName) {
 		CityDTO newCityDTO = new CityDTO();
 		City city = cityDao.findByName(cityName);

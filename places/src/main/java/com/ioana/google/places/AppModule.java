@@ -3,6 +3,8 @@ package com.ioana.google.places;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.impl.Log4JLogger;
 
+import com.google.inject.persist.PersistFilter;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 import com.ioana.google.places.server.GooglePlacesServiceImpl;
 import com.ioana.google.places.service.api.CityService;
@@ -18,6 +20,10 @@ public class AppModule extends ServletModule {
 	protected void configureServlets() {
 		// BIND LOGGER
 		bind(Log.class).to(Log4JLogger.class);
+
+		install(new JpaPersistModule("default"));
+		filter("/*").through(PersistFilter.class);
+
 		bind(CityService.class).to(CityServiceImpl.class);
 		bind(GoogleAPIService.class).to(GoogleAPIServiceImpl.class);
 
