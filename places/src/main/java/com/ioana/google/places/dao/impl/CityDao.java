@@ -8,7 +8,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.ioana.google.places.dao.entities.City;
 
-@Singleton
 public class CityDao extends GenericDaoImpl<City> {
 
 	@Inject
