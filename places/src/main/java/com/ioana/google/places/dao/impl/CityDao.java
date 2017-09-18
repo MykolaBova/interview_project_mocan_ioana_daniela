@@ -18,7 +18,7 @@ public class CityDao extends GenericDaoImpl<City> {
 	}
 
 	public City findByName(String name) {
-		Query query = emProvider.get().createNamedQuery("City.findByName")
+		Query query = em.createNamedQuery("City.findByName")
 				.setParameter("name", name);
 		List<City> cities = query.getResultList();
 		if (cities.size() > 0) {

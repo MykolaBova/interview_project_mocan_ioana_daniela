@@ -9,7 +9,7 @@ import com.ioana.google.places.dao.api.GenericDao;
 public class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Inject
-	protected Provider<EntityManager> emProvider;
+	protected EntityManager em;
 
 	protected Class<T> entityClass;
 
@@ -20,25 +20,26 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 
 	@Override
 	public T create(T t) {
-		emProvider.get().persist(t);
+		em.persist(t);
+
 		return t;
 	}
 
 	@Override
 	public T read(Integer id) {
-		return this.emProvider.get().find(entityClass, id);
+		return em.find(entityClass, id);
 	}
 
 	@Override
 	public T update(T t) {
-		this.emProvider.get().merge(t);
+		em.persist(t);
+
 		return t;
 	}
 
 	@Override
 	public void delete(T t) {
-		t = this.emProvider.get().merge(t);
-		this.emProvider.get().remove(t);
+		em.remove(t);
 	}
 
 }

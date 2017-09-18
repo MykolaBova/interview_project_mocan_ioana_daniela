@@ -1,6 +1,7 @@
 package com.ioana.google.places.service.impl;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 import com.ioana.google.places.dao.entities.City;
@@ -13,12 +14,18 @@ import com.ioana.google.places.service.api.CityService;
 @Singleton
 public class CityServiceImpl implements CityService {
 
+	private Injector injector;
+
 	@Inject
-	private CityDao cityDao;
+	public CityServiceImpl(Injector injector) {
+		this.injector = injector;
+	}
 
 	@Override
 	@Transactional
 	public CityDTO processCity(String cityName) {
+		CityDao cityDao = injector.getInstance(CityDao.class);
+
 		CityDTO newCityDTO = new CityDTO();
 		City city = cityDao.findByName(cityName);
 		if (city == null) {
@@ -33,6 +40,7 @@ public class CityServiceImpl implements CityService {
 		newCityDTO.setLatitude(city.getLatitude());
 		newCityDTO.setName(city.getName());
 		newCityDTO.setLongitude(city.getLongitude());
+
 		return newCityDTO;
 	}
 
