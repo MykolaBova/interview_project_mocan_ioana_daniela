@@ -7,15 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CITY", schema = "public")
-@NamedQueries({ @NamedQuery(name = "City.findByName", query = "SELECT c FROM City c where c.name = :name"), })
 public class City {
 
 	@Id

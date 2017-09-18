@@ -2,7 +2,6 @@ package com.ioana.google.places.service.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 import com.ioana.google.places.dao.entities.City;
 import com.ioana.google.places.dao.impl.CityDao;
@@ -11,7 +10,6 @@ import com.ioana.google.places.dto.LocationDTO;
 import com.ioana.google.places.helper.PlaceLocation;
 import com.ioana.google.places.service.api.CityService;
 
-@Singleton
 public class CityServiceImpl implements CityService {
 
 	private Injector injector;
