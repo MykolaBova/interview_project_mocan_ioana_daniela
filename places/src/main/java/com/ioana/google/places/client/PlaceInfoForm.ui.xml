@@ -1,0 +1,87 @@
+<!DOCTYPE ui:UiBinder SYSTEM 'http://dl.google.com/gwt/DTD/xhtml.ent'>
+<ui:UiBinder
+  xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  xmlns:d='urn:import:com.google.gwt.user.datepicker.client'
+  ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+  ui:generateLocales='default'>
+  <ui:style>
+    .header {
+      font-size: 110%;
+      font-weight: bold;
+      color: #555
+    }
+    
+    .label {
+      font-weight: bold;
+    }
+  </ui:style>
+  <g:DecoratorPanel>
+    <g:HTMLPanel>
+      <table>
+        <tr>
+          <td
+            colspan='2'
+            align='center'
+            class='{style.header}'>
+            <ui:msg
+              key='placeInfoFormTitle'>Place Info</ui:msg>
+          </td>
+        </tr>
+        <tr>
+          <td
+            class='{style.label}'>
+            <ui:msg
+              key='contactInfoFormFirstName'>Icon Link:</ui:msg>
+          </td>
+          <td>
+            <g:TextBox
+              ui:field='iconLinkBox' />
+          </td>
+        </tr>
+        <tr>
+          <td
+            class='{style.label}'>
+            <ui:msg
+              key='contactInfoFormLastName'>Scope:</ui:msg>
+          </td>
+          <td>
+            <g:TextBox
+              ui:field='scopeBox' />
+          </td>
+        </tr>
+        <tr>
+          <td
+            class='{style.label}'>
+            <ui:msg
+              key='contactInfoFormLastName'>Vicinity:</ui:msg>
+          </td>
+          <td>
+            <g:TextBox
+              ui:field='vicinityBox' />
+          </td>
+        </tr>
+        
+        
+        
+        <tr>
+          <td
+            colspan='2'
+            align='center'>
+            <g:Button
+              ui:field='updateButton'>
+              <ui:msg
+                key='contactInfoFormUpdateButton'>Update Contact</ui:msg>
+            </g:Button>
+              &nbsp;
+            <g:Button
+              ui:field='createButton'>
+              <ui:msg
+                key='contactInfoFormCreateButton'>Create Contact</ui:msg>
+            </g:Button>
+          </td>
+        </tr>
+      </table>
+    </g:HTMLPanel>
+  </g:DecoratorPanel>
+</ui:UiBinder>
