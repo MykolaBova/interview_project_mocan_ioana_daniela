@@ -32,7 +32,7 @@
           <td
             class='{style.label}'>
             <ui:msg
-              key='contactInfoFormFirstName'>Icon Link:</ui:msg>
+              key='placeInfoIconLink'>Icon Link:</ui:msg>
           </td>
           <td>
             <g:TextBox
@@ -43,7 +43,7 @@
           <td
             class='{style.label}'>
             <ui:msg
-              key='contactInfoFormLastName'>Scope:</ui:msg>
+              key='placeInfoScope'>Scope:</ui:msg>
           </td>
           <td>
             <g:TextBox
@@ -54,7 +54,7 @@
           <td
             class='{style.label}'>
             <ui:msg
-              key='contactInfoFormLastName'>Vicinity:</ui:msg>
+              key='placeInfoVicinity'>Vicinity:</ui:msg>
           </td>
           <td>
             <g:TextBox
