@@ -26,7 +26,7 @@ public class City {
 
 	private double longitude;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "city")
 	private List<Place> places;
 
 	public int getId() {
@@ -59,6 +59,14 @@ public class City {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public List<Place> getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(List<Place> places) {
+		this.places = places;
 	}
 
 }

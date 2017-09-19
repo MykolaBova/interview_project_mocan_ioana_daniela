@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
@@ -17,6 +18,10 @@ public class PlaceInfoForm extends Composite {
 
 	interface Binder extends UiBinder<Widget, PlaceInfoForm> {
 	}
+
+	/** GWT SERVICE **/
+	private final GooglePlacesServiceAsync googlePlacesService = GWT
+			.create(GooglePlacesService.class);
 
 	@UiField
 	TextBox scopeBox;
@@ -79,6 +84,17 @@ public class PlaceInfoForm extends Composite {
 				placeInfo.setVicinity(vicinityBox.getText());
 				placeInfo.setIconLink(iconLinkBox.getText());
 				// ContactDatabase.get().addContact(placeInfo);
+				googlePlacesService.createPlace(placeInfo,
+						new AsyncCallback<PlaceDTO>() {
+							public void onFailure(Throwable caught) {
+
+							}
+
+							public void onSuccess(PlaceDTO places) {
+								// Push the data into the widget.
+
+							}
+						});
 				setPlace(placeInfo);
 			}
 		});

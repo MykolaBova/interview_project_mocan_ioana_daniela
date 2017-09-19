@@ -25,6 +25,8 @@ public class PlaceDTO implements Serializable {
 
 	private String reference;
 
+	private String city;
+
 	public String getIconLink() {
 		return iconLink;
 	}

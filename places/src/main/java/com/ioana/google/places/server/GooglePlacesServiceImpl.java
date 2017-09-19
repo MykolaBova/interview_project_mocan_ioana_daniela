@@ -12,6 +12,7 @@ import com.ioana.google.places.dto.CityDTO;
 import com.ioana.google.places.dto.PlaceDTO;
 import com.ioana.google.places.service.api.CityService;
 import com.ioana.google.places.service.api.GoogleAPIService;
+import com.ioana.google.places.service.api.PlaceService;
 
 @Singleton
 public class GooglePlacesServiceImpl extends RemoteServiceServlet implements
@@ -23,6 +24,9 @@ public class GooglePlacesServiceImpl extends RemoteServiceServlet implements
 	private CityService cityService;
 
 	@Inject
+	private PlaceService placeService;
+
+	@Inject
 	private GoogleAPIService googleAPIService;
 
 	public ArrayList<PlaceDTO> search(String keyword, int radius) {
@@ -32,6 +36,20 @@ public class GooglePlacesServiceImpl extends RemoteServiceServlet implements
 
 		resultList = googleAPIService.getPlacesForCity(cityDTO, radius);
 
+		placeService.savePlaces(resultList, cityDTO);
+
 		return resultList;
+	}
+
+	@Override
+	public void updatePlace(PlaceDTO place) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public PlaceDTO createPlace(PlaceDTO place) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

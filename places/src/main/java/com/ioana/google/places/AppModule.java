@@ -9,8 +9,10 @@ import com.google.inject.servlet.ServletModule;
 import com.ioana.google.places.server.GooglePlacesServiceImpl;
 import com.ioana.google.places.service.api.CityService;
 import com.ioana.google.places.service.api.GoogleAPIService;
+import com.ioana.google.places.service.api.PlaceService;
 import com.ioana.google.places.service.impl.CityServiceImpl;
 import com.ioana.google.places.service.impl.GoogleAPIServiceImpl;
+import com.ioana.google.places.service.impl.PlaceServiceImpl;
 
 public class AppModule extends ServletModule {
 
@@ -25,6 +27,7 @@ public class AppModule extends ServletModule {
 		filter("/*").through(PersistFilter.class);
 
 		bind(CityService.class).to(CityServiceImpl.class);
+		bind(PlaceService.class).to(PlaceServiceImpl.class);
 		bind(GoogleAPIService.class).to(GoogleAPIServiceImpl.class);
 
 		// CONFIGURE SERVLETS

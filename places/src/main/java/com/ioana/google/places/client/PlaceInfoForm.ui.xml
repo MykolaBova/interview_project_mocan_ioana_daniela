@@ -71,13 +71,13 @@
             <g:Button
               ui:field='updateButton'>
               <ui:msg
-                key='contactInfoFormUpdateButton'>Update Contact</ui:msg>
+                key='placeInfoFormUpdateButton'>Update Place</ui:msg>
             </g:Button>
               &nbsp;
             <g:Button
               ui:field='createButton'>
               <ui:msg
-                key='contactInfoFormCreateButton'>Create Contact</ui:msg>
+                key='placeInfoFormCreateButton'>Create Place</ui:msg>
             </g:Button>
           </td>
         </tr>

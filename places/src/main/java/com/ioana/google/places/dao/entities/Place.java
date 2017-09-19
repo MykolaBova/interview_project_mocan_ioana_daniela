@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +25,10 @@ public class Place {
 	private String name;
 
 	private String reference;
+
+	@ManyToOne
+	@JoinColumn(name = "CITY_ID")
+	private City city;
 
 	@ManyToMany
 	@JoinTable(name = "PLACE_PLACETYPE", joinColumns = { @JoinColumn(name = "placeId") }, inverseJoinColumns = { @JoinColumn(name = "placeTypeId") })
@@ -59,6 +64,14 @@ public class Place {
 
 	public void setReference(String reference) {
 		this.reference = reference;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 }

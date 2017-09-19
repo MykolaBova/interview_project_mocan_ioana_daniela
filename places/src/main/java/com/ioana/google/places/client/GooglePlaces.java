@@ -1,8 +1,6 @@
 package com.ioana.google.places.client;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.core.client.EntryPoint;
@@ -13,7 +11,6 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -45,15 +42,6 @@ public class GooglePlaces implements EntryPoint {
 			.create(GooglePlacesService.class);
 
 	private final Messages messages = GWT.create(Messages.class);
-
-	private static final List<String> DAYS = Arrays.asList("Sunday", "Monday",
-			"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-
-	/**
-	 * The contact form used to update contacts.
-	 */
-	@UiField
-	PlaceInfoForm placeForm;
 
 	ProvidesKey<PlaceDTO> keyProvider = new ProvidesKey<PlaceDTO>() {
 		public Object getKey(PlaceDTO item) {

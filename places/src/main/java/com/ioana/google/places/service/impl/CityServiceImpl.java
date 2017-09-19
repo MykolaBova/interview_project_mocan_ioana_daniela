@@ -28,6 +28,7 @@ public class CityServiceImpl implements CityService {
 
 		CityDTO newCityDTO = new CityDTO();
 		City city = cityDao.findByName(cityName);
+
 		if (city == null) {
 			LocationDTO location = PlaceLocation.getLocation(cityName);
 			// TODO handle location not found (wrong city name)
