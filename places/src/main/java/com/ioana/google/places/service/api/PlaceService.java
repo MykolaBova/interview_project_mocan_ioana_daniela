@@ -10,4 +10,6 @@ public interface PlaceService {
 	PlaceDTO createPlace(PlaceDTO placeDTO);
 
 	void savePlaces(List<PlaceDTO> places, CityDTO cityDTO);
+
+	void updatePlace(PlaceDTO placeDTO);
 }

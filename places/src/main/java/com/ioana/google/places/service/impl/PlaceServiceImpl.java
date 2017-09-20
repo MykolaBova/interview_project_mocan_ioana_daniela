@@ -41,13 +41,29 @@ public class PlaceServiceImpl implements PlaceService {
 		PlaceDao placeDAO = injector.getInstance(PlaceDao.class);
 		CityDao cityDao = injector.getInstance(CityDao.class);
 		City city = cityDao.findByName(cityDTO.getName());
+		placeDAO.deleteForCity(city);
 		for (PlaceDTO placeDTO : places) {
 			Place newPlace = new Place();
 			newPlace.setName(placeDTO.getName());
 			newPlace.setReference(placeDTO.getReference());
 			newPlace.setCity(city);
+			newPlace.setDirty(false);
+			newPlace.setIconLink(placeDTO.getIconLink());
+			newPlace.setScope(placeDTO.getScope());
 			placeDAO.create(newPlace);
 		}
+	}
+
+	@Override
+	@Transactional
+	public void updatePlace(PlaceDTO placeDTO) {
+		PlaceDao placeDAO = injector.getInstance(PlaceDao.class);
+		Place place = placeDAO.findByReference(placeDTO.getReference());
+		place.setDirty(true);
+		place.setName(placeDTO.getName());
+		place.setIconLink(placeDTO.getIconLink());
+		place.setScope(placeDTO.getScope());
+		placeDAO.update(place);
 	}
 
 }

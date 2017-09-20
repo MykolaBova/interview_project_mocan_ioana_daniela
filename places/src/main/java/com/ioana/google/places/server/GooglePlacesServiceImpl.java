@@ -42,9 +42,8 @@ public class GooglePlacesServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public void updatePlace(PlaceDTO place) {
-		// TODO Auto-generated method stub
-
+	public void updatePlace(PlaceDTO placeDTO) {
+		placeService.updatePlace(placeDTO);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.ioana.google.places.dao.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,16 +23,27 @@ public class Place {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "place_seq_gen")
 	private int id;
 
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "reference")
 	private String reference;
+
+	@Column(name = "dirty")
+	private Boolean dirty;
+
+	@Column(name = "scope")
+	private String scope;
+
+	@Column(name = "icon_link")
+	private String iconLink;
 
 	@ManyToOne
 	@JoinColumn(name = "CITY_ID")
 	private City city;
 
 	@ManyToMany
-	@JoinTable(name = "PLACE_PLACETYPE", joinColumns = { @JoinColumn(name = "placeId") }, inverseJoinColumns = { @JoinColumn(name = "placeTypeId") })
+	@JoinTable(name = "PLACE_PLACETYPE", joinColumns = { @JoinColumn(name = "place_id") }, inverseJoinColumns = { @JoinColumn(name = "placetype_id") })
 	private List<PlaceType> types;
 
 	public int getId() {
@@ -72,6 +84,30 @@ public class Place {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public Boolean getDirty() {
+		return dirty;
+	}
+
+	public void setDirty(Boolean dirty) {
+		this.dirty = dirty;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	public String getIconLink() {
+		return iconLink;
+	}
+
+	public void setIconLink(String iconLink) {
+		this.iconLink = iconLink;
 	}
 
 }

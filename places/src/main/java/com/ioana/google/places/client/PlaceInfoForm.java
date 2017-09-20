@@ -67,10 +67,19 @@ public class PlaceInfoForm extends Composite {
 				placeInfo.setVicinity(vicinityBox.getText());
 				placeInfo.setScope(scopeBox.getText());
 				placeInfo.setIconLink(iconLinkBox.getText());
-				// int categoryIndex = categoryBox.getSelectedIndex();
+				googlePlacesService.updatePlace(placeInfo,
+						new AsyncCallback<Void>() {
+							public void onFailure(Throwable caught) {
 
-				// Update the views.
-				// ContactDatabase.get().refreshDisplays();
+							}
+
+							@Override
+							public void onSuccess(Void result) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+				setPlace(placeInfo);
 			}
 		});
 		createButton.addClickHandler(new ClickHandler() {

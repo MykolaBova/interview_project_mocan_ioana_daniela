@@ -17,7 +17,7 @@
 		<guice.version>3.0</guice.version>
 		<postgresql.version>8.4-701.jdbc4</postgresql.version>
 		<commons-logging.version>1.1.3</commons-logging.version>
-		<persistence-api.version>2.0.0</persistence-api.version>
+		<persistence-api.version>2.1.1</persistence-api.version>
 		<eclipselink.version>2.6.2</eclipselink.version>
 
 		<maven.compiler.source>1.7</maven.compiler.source>
