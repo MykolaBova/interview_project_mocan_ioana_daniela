@@ -32,6 +32,17 @@
           <td
             class='{style.label}'>
             <ui:msg
+              key='placeInfoName'>Name:</ui:msg>
+          </td>
+          <td>
+            <g:TextBox
+              ui:field='nameBox' />
+          </td>
+        </tr>
+        <tr>
+          <td
+            class='{style.label}'>
+            <ui:msg
               key='placeInfoIconLink'>Icon Link:</ui:msg>
           </td>
           <td>

@@ -84,6 +84,7 @@ public class GoogleAPIServiceImpl implements GoogleAPIService {
 				PlaceDTO place = mapper.readValue(
 						predsJsonArray.getJSONObject(i).toString(),
 						PlaceDTO.class);
+				place.setCity(cityDTO.getName());
 				resultList.add(place);
 			}
 		} catch (JSONException | IOException e) {

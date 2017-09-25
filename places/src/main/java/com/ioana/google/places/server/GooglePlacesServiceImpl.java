@@ -48,7 +48,7 @@ public class GooglePlacesServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public PlaceDTO createPlace(PlaceDTO place) {
-		// TODO Auto-generated method stub
-		return null;
+		placeService.createPlace(place);
+		return place;
 	}
 }

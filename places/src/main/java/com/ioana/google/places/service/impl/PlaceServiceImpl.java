@@ -1,6 +1,7 @@
 package com.ioana.google.places.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -28,11 +29,17 @@ public class PlaceServiceImpl implements PlaceService {
 	@Transactional
 	public PlaceDTO createPlace(PlaceDTO placeDTO) {
 		PlaceDao placeDAO = injector.getInstance(PlaceDao.class);
+		CityDao cityDao = injector.getInstance(CityDao.class);
+		City city = cityDao.findByName(placeDTO.getCity());
 		Place newPlace = new Place();
 		newPlace.setName(placeDTO.getName());
-		newPlace.setReference(placeDTO.getReference());
-		// TODO Auto-generated method stub
-		return null;
+		newPlace.setReference(UUID.randomUUID().toString());
+		newPlace.setIconLink(placeDTO.getIconLink());
+		newPlace.setScope(placeDTO.getScope());
+		newPlace.setDirty(true);
+		newPlace.setCity(city);
+		placeDAO.create(newPlace);
+		return placeDTO;
 	}
 
 	@Override

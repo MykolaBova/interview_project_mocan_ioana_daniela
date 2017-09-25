@@ -168,6 +168,7 @@ public class GooglePlaces implements EntryPoint {
 								RootPanel.get("placesPanel").add(placesPanel);
 								serverResponseLabel
 										.removeStyleName("serverResponseLabelError");
+								sendButton.setEnabled(true);
 
 							}
 						});

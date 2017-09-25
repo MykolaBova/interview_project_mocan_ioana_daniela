@@ -24,6 +24,9 @@ public class PlaceInfoForm extends Composite {
 			.create(GooglePlacesService.class);
 
 	@UiField
+	TextBox nameBox;
+
+	@UiField
 	TextBox scopeBox;
 
 	@UiField
@@ -45,13 +48,6 @@ public class PlaceInfoForm extends Composite {
 
 	public PlaceInfoForm() {
 		initWidget(uiBinder.createAndBindUi(this));
-
-		// Add the categories to the category box.
-		/*
-		 * final Category[] categories =
-		 * ContactDatabase.get().queryCategories(); for (Category category :
-		 * categories) { categoryBox.addItem(category.getDisplayName()); }
-		 */
 
 		// Initialize the contact to null.
 		setPlace(null);
@@ -88,12 +84,13 @@ public class PlaceInfoForm extends Composite {
 				 * int categoryIndex = categoryBox.getSelectedIndex(); Category
 				 * category = categories[categoryIndex];
 				 */
-				placeInfo = new PlaceDTO();
-				placeInfo.setScope(scopeBox.getText());
-				placeInfo.setVicinity(vicinityBox.getText());
-				placeInfo.setIconLink(iconLinkBox.getText());
-				// ContactDatabase.get().addContact(placeInfo);
-				googlePlacesService.createPlace(placeInfo,
+				PlaceDTO newPlace = new PlaceDTO();
+				newPlace.setScope(scopeBox.getText());
+				newPlace.setVicinity(vicinityBox.getText());
+				newPlace.setIconLink(iconLinkBox.getText());
+				newPlace.setName(nameBox.getText());
+				newPlace.setCity(placeInfo.getCity());
+				googlePlacesService.createPlace(newPlace,
 						new AsyncCallback<PlaceDTO>() {
 							public void onFailure(Throwable caught) {
 
@@ -104,26 +101,21 @@ public class PlaceInfoForm extends Composite {
 
 							}
 						});
-				setPlace(placeInfo);
+				setPlace(newPlace);
 			}
 		});
 	}
 
-	public void setPlace(PlaceDTO contact) {
-		this.placeInfo = contact;
-		updateButton.setEnabled(contact != null);
-		if (contact != null) {
+	public void setPlace(PlaceDTO placeDTO) {
+		this.placeInfo = placeDTO;
+		updateButton.setEnabled(placeDTO != null);
+		if (placeDTO != null) {
 
-			scopeBox.setText(contact.getScope());
-			vicinityBox.setText(contact.getVicinity());
-			iconLinkBox.setText(contact.getIconLink());
+			scopeBox.setText(placeDTO.getScope());
+			vicinityBox.setText(placeDTO.getVicinity());
+			iconLinkBox.setText(placeDTO.getIconLink());
+			nameBox.setText(placeDTO.getName());
 
-			// Category category = contact.getCategory();
-			/*
-			 * Category[] categories = ContactDatabase.get().queryCategories();
-			 * for (int i = 0; i < categories.length; i++) { if (category ==
-			 * categories[i]) { categoryBox.setSelectedIndex(i); break; } }
-			 */
 		}
 	}
 }
