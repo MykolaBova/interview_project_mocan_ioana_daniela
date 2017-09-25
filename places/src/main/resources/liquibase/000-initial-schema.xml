@@ -1,0 +1,92 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd 
+						http://www.liquibase.org/xml/ns/dbchangelog-ext 
+						http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd"
+	logicalFilePath="000-initial-schema.xml">
+	<changeSet author="USER (generated)" id="1506327851757-1">
+		<createTable tableName="city">
+			<column autoIncrement="true" name="id" type="SERIAL">
+				<constraints primaryKey="true" primaryKeyName="city_pkey" />
+			</column>
+			<column name="name" type="CHAR(500)">
+				<constraints nullable="false" />
+			</column>
+			<column name="latitude" type="FLOAT8">
+				<constraints nullable="false" />
+			</column>
+			<column name="longitude" type="FLOAT8">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-2">
+		<createTable tableName="place">
+			<column autoIncrement="true" name="id" type="SERIAL">
+				<constraints primaryKey="true" primaryKeyName="place_pkey" />
+			</column>
+			<column name="reference" type="CHAR(500)">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="CHAR(500)">
+				<constraints nullable="false" />
+			</column>
+			<column name="city_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column defaultValueBoolean="false" name="dirty" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+			<column name="icon_link" type="CHAR(500)" />
+			<column name="scope" type="CHAR(500)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-3">
+		<createTable tableName="place_placetype">
+			<column name="place_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="placetype_id" type="INT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-4">
+		<createTable tableName="placetype">
+			<column autoIncrement="true" name="id" type="SERIAL">
+				<constraints primaryKey="true" primaryKeyName="placetype_pkey" />
+			</column>
+			<column name="type" type="CHAR(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-5">
+		<addUniqueConstraint columnNames="reference"
+			constraintName="reference_unique" tableName="place" />
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-6">
+		<addUniqueConstraint columnNames="type"
+			constraintName="type_unique" tableName="placetype" />
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-7">
+		<addForeignKeyConstraint baseColumnNames="city_id"
+			baseTableName="place" constraintName="city_fk" deferrable="true"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="city" />
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-8">
+		<addForeignKeyConstraint baseColumnNames="place_id"
+			baseTableName="place_placetype" constraintName="place_fk" deferrable="true"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="place" />
+	</changeSet>
+	<changeSet author="USER (generated)" id="1506327851757-9">
+		<addForeignKeyConstraint baseColumnNames="placetype_id"
+			baseTableName="place_placetype" constraintName="placetype_fk"
+			deferrable="true" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="placetype" />
+	</changeSet>
+</databaseChangeLog>
